@@ -35,6 +35,7 @@ public class Controller {
     }
 
     public void StartGame() {
+        System.out.println("Start Game!");
         // TODO code Game Start
     }
 }

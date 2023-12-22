@@ -23,7 +23,8 @@ public class GUI extends JPanel {
         aGameField.setGameEngine(aGameEngine);
         this.setSize(aMain.getGameDim());
         this.setBackground(Color.gray);
-        aGameEngine.setGameFieldSize(aGameField.getGameFieldSize());
+        aGameEngine.setGameField(aGameField);
+        //aGameEngine.drawStartField(aGameField.getGraphics());
     }
 
     //* Methods Label Updates

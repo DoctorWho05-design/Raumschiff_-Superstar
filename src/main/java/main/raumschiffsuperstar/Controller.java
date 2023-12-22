@@ -1,10 +1,13 @@
 package main.raumschiffsuperstar;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import main.raumschiffsuperstar.Util.Debbug;
 import main.raumschiffsuperstar.flugobjekte.*;
@@ -21,6 +24,9 @@ public class Controller {
     private ArrayList<UFO> aKryptonitList;
     private ArrayList<UFO> aSuperstarList;
     private Raumschiff aRaumschiff;
+    private GameField aGameField;
+    private Image aStartFieldImage;
+
 
     public Controller(GUI aGameGui){
         this.aGameGui = aGameGui;
@@ -36,9 +42,7 @@ public class Controller {
         });
     }
 
-    private void timerTick() {
-        // TODO code Timer Tick
-        
+    private void timerTick() {        
         if ((aTime % 30) == 0) aRank++;
         aTime++;
 
@@ -51,20 +55,15 @@ public class Controller {
     }
 
     public void startGame() {
-        System.out.println("Start Game!");
-        // TODO code Game Start
         this.aKryptonitList = new ArrayList<>();
         this.aSuperstarList = new ArrayList<>();
         this.aRaumschiff = new Raumschiff();
-        
         aGameTimer.start();
         this.aIsGameRunning = true;
         aGameGui.getGameField().repaint();
     }
 
     public void stopGame() {
-        System.out.println("Game Stoped!");
-        // TODO code Stop Game
         this.aTime = 0;
         this.aRank = 0;
         this.aIsGameRunning = false;
@@ -75,12 +74,17 @@ public class Controller {
     }
 
     public void drawGame(Graphics g) {
-
+        if (!aIsGameRunning) return;
+        aGameField.setBackground(Color.cyan);
     }
 
     public void drawStartField(Graphics g){
         if (aIsGameRunning) return;
-        g.drawRect(20, 20, 20, 20);
+        aGameField.setBackground(Color.black);
+        aGameFieldSize = aGameField.getGameFieldSize();
+        ImageIcon aStartFieldIcon = new ImageIcon("./public/PressStart.gif");
+        aStartFieldImage = aStartFieldIcon.getImage();
+        g.drawImage(aStartFieldImage, 40, 22, aGameField);
     }
 
     public void startSettings() {
@@ -96,5 +100,5 @@ public class Controller {
 
     public boolean getIsGameRunning() {return aIsGameRunning;}
 
-    public void setGameFieldSize(Dimension aGameFieldSize) {this.aGameFieldSize = aGameFieldSize;}
+    public void setGameField(GameField aGameField) {this.aGameField = aGameField;}
 }

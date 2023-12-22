@@ -1,6 +1,5 @@
 package main.raumschiffsuperstar;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
@@ -15,12 +14,14 @@ public class GameField extends JPanel {
     //* Constructor
     public GameField() {
         initComponents();
-        initPanel();
+        this.setFocusable(true);
     }
 
     //* Method Create Panel (Only used once)
-    private void initPanel(){
+    public void initPanel(){
         aGameFieldSize = new Dimension(this.getWidth(), this.getHeight());
+        this.addKeyListener(aGameEngine.getGameKeyControlls());
+        //System.out.println(aGameFieldSize);
     }
 
     //* Panel Draw Methods

@@ -2,21 +2,32 @@ package main.raumschiffsuperstar.flugobjekte;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 
+import javax.swing.ImageIcon;
+
+import main.raumschiffsuperstar.GameField;
 abstract class Flugobjekt {
     //* Parameter
     protected Point aPosObjekt;
-    protected Dimension aSizeObj;
+    protected final int aSizeObj = 80;
+    protected Image aStartFieldImage;
+    protected int aSpeed;
 
     //* Constructor
-    public Flugobjekt() {}
+    public Flugobjekt(String aCharProfileImageSource) {
+        ImageIcon aTempIcon = new ImageIcon(aCharProfileImageSource);
+        Image aTempImage = aTempIcon.getImage();
+        aStartFieldImage = aTempImage.getScaledInstance(aSizeObj, aSizeObj, Image.SCALE_SMOOTH);
+    }
     
     //* Abstract Methods 
-    public abstract void draw(Graphics g);
+    public abstract void draw(Graphics g , GameField aGameField);
     public abstract void move(Point aPosEnemy);
 
     //* Getter
     public Point getPosObjekt() {return aPosObjekt;}
-    public Dimension getSizeObj() {return aSizeObj;}
+    public int getSizeObj() {return aSizeObj;}
+    public int getSpeed() {return aSpeed;}
 }

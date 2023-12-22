@@ -24,7 +24,6 @@ public class GUI extends JPanel {
         this.setSize(aMain.getGameDim());
         this.setBackground(Color.gray);
         aGameEngine.setGameField(aGameField);
-        //aGameEngine.drawStartField(aGameField.getGraphics());
     }
 
     //* Methods Label Updates
@@ -68,6 +67,7 @@ public class GUI extends JPanel {
         } else {
             aStartButton.setText("STOP");
             aGameEngine.startGame();
+            aGameField.initPanel();
         }
     }
 

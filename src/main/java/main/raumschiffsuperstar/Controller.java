@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import main.raumschiffsuperstar.Util.Debbug;
 import main.raumschiffsuperstar.flugobjekte.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Controller {
 
@@ -26,10 +29,12 @@ public class Controller {
     private Raumschiff aRaumschiff;
     private GameField aGameField;
     private Image aStartFieldImage;
+    private KeyAdapter aKeyGameControll;
 
     public Controller(GUI aGameGui){
         this.aGameGui = aGameGui;
         initTimer();
+        initKeyListener();
     }
 
     private void initTimer(){
@@ -39,6 +44,47 @@ public class Controller {
                 timerTick();
             }
         });
+
+        aGameTimer.stop();
+    }
+
+    private void initKeyListener() {
+        aKeyGameControll = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                handleKeyPress(e);
+            }
+        };
+    }
+
+    private void handleKeyPress(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+        Point aCharPos = aRaumschiff.getPosObjekt();
+        int aSpeed = aRaumschiff.getSpeed();
+        switch (keyCode) {
+            case KeyEvent.VK_UP:
+            case KeyEvent.VK_W:
+                System.out.println("Up");
+                aCharPos.y -= aSpeed;
+                break;
+            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S:
+                System.out.println("Down");
+                aCharPos.y += aSpeed;
+                break;
+            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_A:
+                System.out.println("Left");
+                aCharPos.x -= aSpeed;
+                break;
+            case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
+                System.out.println("Right");
+                aCharPos.x += aSpeed;
+                break;
+        }
+
+        aRaumschiff.move(aCharPos);
     }
 
     private void timerTick() {        
@@ -54,12 +100,14 @@ public class Controller {
     }
 
     public void startGame() {
-        this.aKryptonitList = new ArrayList<>();
-        this.aSuperstarList = new ArrayList<>();
+        this.aKryptonitList = new ArrayList<>(10);
+        this.aSuperstarList = new ArrayList<>(10);
         this.aRaumschiff = new Raumschiff();
         aGameTimer.start();
         this.aIsGameRunning = true;
         aGameGui.getGameField().repaint();
+        aGameField.requestFocusInWindow();
+        aGameField.addKeyListener(aKeyGameControll);
     }
 
     public void stopGame() {
@@ -75,6 +123,7 @@ public class Controller {
     public void drawGame(Graphics g) {
         if (!aIsGameRunning) return;
         aGameField.setBackground(Color.cyan);
+        aRaumschiff.draw(g, aGameField);
     }
 
     public void drawStartField(Graphics g){
@@ -100,4 +149,6 @@ public class Controller {
     public boolean getIsGameRunning() {return aIsGameRunning;}
 
     public void setGameField(GameField aGameField) {this.aGameField = aGameField;}
+
+    public KeyAdapter getGameKeyControlls() {return aKeyGameControll;}
 }

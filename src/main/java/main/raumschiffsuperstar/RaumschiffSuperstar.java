@@ -1,5 +1,6 @@
 package main.raumschiffsuperstar;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import java.awt.Dimension;
 
@@ -8,6 +9,7 @@ public class RaumschiffSuperstar extends JFrame{
     private final String aTitle = "Raumschiff Superstar";
     private final Dimension aGameDim = new Dimension(1200, 700);
     private final GUI aGameGui = new GUI(this);
+    private final ImageIcon img = new ImageIcon("./public/GameIcon.png");
 
     public RaumschiffSuperstar() {
         initFrame();
@@ -15,6 +17,7 @@ public class RaumschiffSuperstar extends JFrame{
 
     private void initFrame() {
         this.setTitle(aTitle);
+        this.setIconImage(img.getImage());
         this.setSize(aGameDim);
         this.setResizable(false);
         this.add(aGameGui);

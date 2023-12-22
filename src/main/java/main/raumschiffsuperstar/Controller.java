@@ -14,7 +14,6 @@ public class Controller {
     private Timer aGameTimer;
     private boolean aIsGameRunning = false;
     private final Debbug aDebbuger = new Debbug(true);
-    private Graphics aGameGraphics;
 
     private ArrayList<Kryptonit> aKryptonitList;
     private ArrayList<Superstar> aSuperstarList;
@@ -22,13 +21,11 @@ public class Controller {
 
     public Controller(GUI aGameGui){
         this.aGameGui = aGameGui;
-        this.aGameGraphics = aGameGui.getGameFieldGraphics();
         this.aKryptonitList = new ArrayList<>();
         this.aSuperstarList = new ArrayList<>();
         this.aRaumschiff = new Raumschiff();
         initTimer();
     }
-
 
     private void initTimer(){
         aGameTimer = new Timer(1000, new ActionListener() {
@@ -43,8 +40,6 @@ public class Controller {
         // TODO code Timer Tick
 
 
-
-        drawGame();
     }
 
     public void StartGame() {
@@ -52,7 +47,7 @@ public class Controller {
         // TODO code Game Start
     }
 
-    private void drawGame() {
-        // TODO code draw Game
+    public void drawGame(Graphics g) {
+
     }
 }

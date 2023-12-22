@@ -8,7 +8,8 @@ public class GUI extends JPanel {
 
     private RaumschiffSuperstar aMain;
     private Controller aGameEngine;
-
+    // TODO make new JPannel Class for GameField GUI^
+    
     public GUI(RaumschiffSuperstar aMain) {
         this.aMain = aMain;
 
@@ -24,8 +25,10 @@ public class GUI extends JPanel {
         aGameField.setBackground(Color.cyan);
     }
 
-    public Graphics getGameFieldGraphics() {return aGameField.getGraphics();}
+    @Override
+    public void paintComponent(Graphics g){
 
+    }
 
     //! Generated Code (Do not Change)
     @SuppressWarnings("unchecked")

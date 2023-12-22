@@ -4,7 +4,6 @@ public abstract class UFO extends Flugobjekt{
 
     //* Parameter
     private boolean aInGame;
-    protected int aSpeed;
 
     //* Contructor
     public UFO(String aCharProfileImageSource) {

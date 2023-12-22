@@ -13,6 +13,7 @@ abstract class Flugobjekt {
     protected Point aPosObjekt;
     protected final int aSizeObj = 80;
     protected Image aStartFieldImage;
+    protected int aSpeed;
 
     //* Constructor
     public Flugobjekt(String aCharProfileImageSource) {
@@ -28,4 +29,5 @@ abstract class Flugobjekt {
     //* Getter
     public Point getPosObjekt() {return aPosObjekt;}
     public int getSizeObj() {return aSizeObj;}
+    public int getSpeed() {return aSpeed;}
 }

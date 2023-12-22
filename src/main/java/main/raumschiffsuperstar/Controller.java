@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import main.raumschiffsuperstar.Util.Debbug;
 import main.raumschiffsuperstar.flugobjekte.*;
@@ -21,6 +23,7 @@ public class Controller {
     private ArrayList<UFO> aKryptonitList;
     private ArrayList<UFO> aSuperstarList;
     private Raumschiff aRaumschiff;
+    
 
     public Controller(GUI aGameGui){
         this.aGameGui = aGameGui;
@@ -56,7 +59,6 @@ public class Controller {
         this.aKryptonitList = new ArrayList<>();
         this.aSuperstarList = new ArrayList<>();
         this.aRaumschiff = new Raumschiff();
-        
         aGameTimer.start();
         this.aIsGameRunning = true;
         aGameGui.getGameField().repaint();
@@ -75,12 +77,11 @@ public class Controller {
     }
 
     public void drawGame(Graphics g) {
-
+        if (!aIsGameRunning) return;
     }
 
     public void drawStartField(Graphics g){
         if (aIsGameRunning) return;
-        g.drawRect(20, 20, 20, 20);
     }
 
     public void startSettings() {

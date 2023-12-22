@@ -7,34 +7,40 @@ import javax.swing.JPanel;
 
 public class GameField extends JPanel {
 
+    //* Parameter
     private Controller aGameEngine;
     private Dimension aGameFieldSize;
+    
 
+    //* Constructor
     public GameField() {
         initComponents();
         initPanel();
     }
 
+    //* Method Create Panel (Only used once)
     private void initPanel(){
         this.setBackground(Color.cyan);
         aGameFieldSize = new Dimension(this.getWidth(), this.getHeight());
     }
 
+    //* Panel Draw Methods
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawGameFrame(g);
         aGameEngine.drawStartField(g);
-    }
-
-    public void setGameEngine(Controller aGameEngine) {
-        this.aGameEngine = aGameEngine;
+        aGameEngine.drawGame(g);
     }
 
     private void drawGameFrame(Graphics g) {
         g.drawRect(0, 0, this.getWidth()-1, this.getHeight()-1);
     }
 
+    //* Setter
+    public void setGameEngine(Controller aGameEngine) {this.aGameEngine = aGameEngine;}
+
+    //* Getter
     public Dimension getGameFieldSize() {return aGameFieldSize;}
 
     //! Generated Code (Do not Change)
@@ -46,11 +52,11 @@ public class GameField extends JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 375, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -2,6 +2,7 @@ package main.raumschiffsuperstar.flugobjekte;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import main.raumschiffsuperstar.GameField;
 
 public class Raumschiff extends Flugobjekt{
 
@@ -11,18 +12,22 @@ public class Raumschiff extends Flugobjekt{
 
     //* Constructor
     public Raumschiff() {
-
+        super("./public/Raumschiff.png");
+        
     }
 
     //* Method Used for Draw Spaceship on Panel
     @Override
-    public void draw(Graphics g) {
-        // TODO Auto-generated method stub
+    public void draw(Graphics g, GameField aGameField) {
+        if (this.aPosObjekt == null) this.aPosObjekt = new Point(20, (aGameField.getHeight()/2) - (this.aSizeObj/2));
+        g.drawImage(aStartFieldImage, aPosObjekt.x, aPosObjekt.y, aGameField);
     }
 
     //! Wird nicht benötigt
     @Override
-    public void move(Point aPosEnemy) {}
+    public void move(Point aPos) {
+        
+    }
     
     //* Getter
     public int getPoints() {return aPoints;}

@@ -6,6 +6,10 @@ public abstract class UFO extends Flugobjekt{
     private boolean aInGame;
     protected int aSpeed;
 
+    //* Contructor
+    public UFO(String aCharProfileImageSource) {
+        super(aCharProfileImageSource);
+    }
     //* Method Used in timerTick() to check if the Object Hit the Spaceship
     public Boolean checkHitShip() {
         // TODO code Check if Object hit Ship

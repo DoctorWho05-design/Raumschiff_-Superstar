@@ -30,6 +30,7 @@ public class Controller {
     public Controller(GUI aGameGui){
         this.aGameGui = aGameGui;
         initTimer();
+        initKeyListener();
     }
 
     private void initTimer(){
@@ -39,6 +40,12 @@ public class Controller {
                 timerTick();
             }
         });
+
+        aGameTimer.stop();
+    }
+
+    private void initKeyListener() {
+
     }
 
     private void timerTick() {        
@@ -54,8 +61,8 @@ public class Controller {
     }
 
     public void startGame() {
-        this.aKryptonitList = new ArrayList<>();
-        this.aSuperstarList = new ArrayList<>();
+        this.aKryptonitList = new ArrayList<>(10);
+        this.aSuperstarList = new ArrayList<>(10);
         this.aRaumschiff = new Raumschiff();
         aGameTimer.start();
         this.aIsGameRunning = true;
@@ -75,6 +82,7 @@ public class Controller {
     public void drawGame(Graphics g) {
         if (!aIsGameRunning) return;
         aGameField.setBackground(Color.cyan);
+        aRaumschiff.draw(g, aGameField);
     }
 
     public void drawStartField(Graphics g){

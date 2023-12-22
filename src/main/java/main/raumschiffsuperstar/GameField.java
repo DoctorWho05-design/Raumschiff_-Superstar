@@ -15,12 +15,12 @@ public class GameField extends JPanel {
     //* Constructor
     public GameField() {
         initComponents();
-        initPanel();
     }
 
     //* Method Create Panel (Only used once)
-    private void initPanel(){
+    public void initPanel(){
         aGameFieldSize = new Dimension(this.getWidth(), this.getHeight());
+        //System.out.println(aGameFieldSize);
     }
 
     //* Panel Draw Methods

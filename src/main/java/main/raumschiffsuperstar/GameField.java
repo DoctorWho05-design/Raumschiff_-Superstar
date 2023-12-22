@@ -20,7 +20,6 @@ public class GameField extends JPanel {
 
     //* Method Create Panel (Only used once)
     private void initPanel(){
-        this.setBackground(Color.cyan);
         aGameFieldSize = new Dimension(this.getWidth(), this.getHeight());
     }
 

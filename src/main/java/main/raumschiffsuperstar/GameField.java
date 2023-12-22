@@ -21,11 +21,16 @@ public class GameField extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawRect(12, 20, 30, 40);
+        drawGameFrame(g);
+        aGameEngine.drawStartField(g);
     }
 
     public void setGameEngine(Controller aGameEngine) {
         this.aGameEngine = aGameEngine;
+    }
+
+    private void drawGameFrame(Graphics g) {
+        g.drawRect(0, 0, getWidth()-1, getHeight()-1);
     }
 
     //! Generated Code (Do not Change)

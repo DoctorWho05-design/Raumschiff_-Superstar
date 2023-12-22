@@ -2,9 +2,7 @@ package main.raumschiffsuperstar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Timer;
-
 import main.raumschiffsuperstar.Util.Debbug;
 
 public class Controller {

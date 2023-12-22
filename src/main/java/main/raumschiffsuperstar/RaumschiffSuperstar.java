@@ -25,9 +25,7 @@ public class RaumschiffSuperstar extends JFrame{
         this.setVisible(true);
     }
 
-    public Dimension getGameDim() {
-        return aGameDim;
-    }
+    public Dimension getGameDim() {return aGameDim;}
 
     public static void main(String[] args) {
         new RaumschiffSuperstar();

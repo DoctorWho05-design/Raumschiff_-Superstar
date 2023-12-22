@@ -19,10 +19,9 @@ public class Raumschiff extends Flugobjekt{
 
     @Override
     public void move(Point aPosEnemy) {
-        // TODO Auto-generated method stub
+        //! Wird nicht benötigt
     }
     
-
     public int getPoints() {return aPoints;}
 
     public int getLifes() {return aLifes;}

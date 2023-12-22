@@ -2,7 +2,6 @@ package main.raumschiffsuperstar;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import javax.swing.JPanel;
 
 public class GUI extends JPanel {
@@ -25,9 +24,7 @@ public class GUI extends JPanel {
         aGameField.setBackground(Color.cyan);
     }
 
-    public Graphics getGameFieldGraphics() {
-        return aGameField.getGraphics();
-    }
+    public Graphics getGameFieldGraphics() {return aGameField.getGraphics();}
 
 
     //! Generated Code (Do not Change)

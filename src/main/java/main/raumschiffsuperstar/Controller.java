@@ -18,7 +18,6 @@ public class Controller {
     private int aTime = 0;
     private int aRank;
     private Dimension aGameFieldSize;
-
     private ArrayList<UFO> aKryptonitList;
     private ArrayList<UFO> aSuperstarList;
     private Raumschiff aRaumschiff;
@@ -39,12 +38,15 @@ public class Controller {
 
     private void timerTick() {
         // TODO code Timer Tick
+        
         if ((aTime % 30) == 0) aRank++;
         aTime++;
+
         aGameGui.updateTimer(aTime);
         aGameGui.updateLives(aRaumschiff.getLifes());
         aGameGui.updatePoints(aRaumschiff.getPoints());
         aGameGui.updateRank(aRank);
+
         aGameGui.getGameField().repaint();
     }
 

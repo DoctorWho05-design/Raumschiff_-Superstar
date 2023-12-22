@@ -3,7 +3,7 @@ package main.raumschiffsuperstar.flugobjekte;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public abstract class Flugobjekt {
+abstract class Flugobjekt {
     protected Point aPosObjekt;
 
     public Flugobjekt(){

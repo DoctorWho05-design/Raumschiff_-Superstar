@@ -1,9 +1,12 @@
 package main.raumschiffsuperstar;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.Timer;
 import main.raumschiffsuperstar.Util.Debbug;
+import main.raumschiffsuperstar.flugobjekte.*;
 
 public class Controller {
 
@@ -11,10 +14,18 @@ public class Controller {
     private Timer aGameTimer;
     private boolean aIsGameRunning = false;
     private final Debbug aDebbuger = new Debbug(true);
+    private Graphics aGameGraphics;
+
+    private ArrayList<Kryptonit> aKryptonitList;
+    private ArrayList<Superstar> aSuperstarList;
+    private Raumschiff aRaumschiff;
 
     public Controller(GUI aGameGui){
         this.aGameGui = aGameGui;
-
+        this.aGameGraphics = aGameGui.getGameFieldGraphics();
+        this.aKryptonitList = new ArrayList<>();
+        this.aSuperstarList = new ArrayList<>();
+        this.aRaumschiff = new Raumschiff();
         initTimer();
     }
 
@@ -30,10 +41,18 @@ public class Controller {
 
     private void timerTick() {
         // TODO code Timer Tick
+
+
+
+        drawGame();
     }
 
     public void StartGame() {
         System.out.println("Start Game!");
         // TODO code Game Start
+    }
+
+    private void drawGame() {
+        // TODO code draw Game
     }
 }

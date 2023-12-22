@@ -15,10 +15,12 @@ public class Debbug {
     }
     
     public void isMethodStarted(String aMethodName) {
+        if (!aDebugMode) return;
         aCheckMap.put(aMethodName, false);
     }
 
     public void isMethodFinished(String aMethodName) {
+        if (!aDebugMode) return;
         aCheckMap.put(aMethodName, true);
     }
 
@@ -26,6 +28,7 @@ public class Debbug {
         System.out.println("###########################");
     }
     public void printMap(){
+        if (!aDebugMode) return;
         printTrenner();
         System.out.println(aCheckMap);
         printTrenner();

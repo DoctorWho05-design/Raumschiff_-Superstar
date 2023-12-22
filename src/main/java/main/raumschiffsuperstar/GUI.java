@@ -40,7 +40,7 @@ public class GUI extends JPanel {
         aTimeLabel = new javax.swing.JLabel();
         aRankLabel = new javax.swing.JLabel();
         aLiveLabel = new javax.swing.JLabel();
-        aDebugModeButton = new javax.swing.JButton();
+        aSettingsButton = new javax.swing.JButton();
         aHelpButton = new javax.swing.JButton();
 
         aStartButton.setText("START");
@@ -69,10 +69,10 @@ public class GUI extends JPanel {
 
         aLiveLabel.setText("Lives: ");
 
-        aDebugModeButton.setText("Debug");
-        aDebugModeButton.addActionListener(new java.awt.event.ActionListener() {
+        aSettingsButton.setText("Settings");
+        aSettingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aDebugModeButtonActionPerformed(evt);
+                aSettingsButtonActionPerformed(evt);
             }
         });
 
@@ -98,7 +98,7 @@ public class GUI extends JPanel {
                         .addComponent(aTimeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(aRankLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(aLiveLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(aDebugModeButton)
+                    .addComponent(aSettingsButton)
                     .addComponent(aHelpButton))
                 .addGap(24, 24, 24))
         );
@@ -121,7 +121,7 @@ public class GUI extends JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(aLiveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 400, Short.MAX_VALUE)
-                        .addComponent(aDebugModeButton)
+                        .addComponent(aSettingsButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(aHelpButton)
                         .addGap(16, 16, 16))))
@@ -132,8 +132,8 @@ public class GUI extends JPanel {
         aGameEngine.startGame();
     }//GEN-LAST:event_aStartButtonActionPerformed
 
-    private void aDebugModeButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        aGameEngine.startDebbug();
+    private void aSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        aGameEngine.startSettings();
     }
 
     private void aHelpButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,7 +143,7 @@ public class GUI extends JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private main.raumschiffsuperstar.GameField aGameField;
     private javax.swing.JButton aStartButton;
-    private javax.swing.JButton aDebugModeButton;
+    private javax.swing.JButton aSettingsButton;
     private javax.swing.JButton aHelpButton;
     private javax.swing.JLabel aPointLabel;
     private javax.swing.JLabel aTimeLabel;

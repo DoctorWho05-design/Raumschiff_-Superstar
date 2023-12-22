@@ -15,8 +15,8 @@ public class Controller {
     private boolean aIsGameRunning = false;
     private final Debbug aDebbuger = new Debbug(true);
 
-    private ArrayList<Kryptonit> aKryptonitList;
-    private ArrayList<Superstar> aSuperstarList;
+    private ArrayList<UFO> aKryptonitList;
+    private ArrayList<UFO> aSuperstarList;
     private Raumschiff aRaumschiff;
 
     public Controller(GUI aGameGui){
@@ -31,7 +31,7 @@ public class Controller {
         aGameTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 timerTick();
+                timerTick();
             }
         });
     }
@@ -56,9 +56,9 @@ public class Controller {
         g.drawRect(20, 20, 20, 20);
     }
 
-    public void startDebbug() {
-        System.out.println("Debuger started!");
-        // TODO code Debbeger
+    public void startSettings() {
+        System.out.println("Settings started!");
+        // TODO code Settings
     }
 
     public void startHelp() {

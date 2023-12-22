@@ -1,6 +1,6 @@
 package main.raumschiffsuperstar.flugobjekte;
 
-abstract class UFO extends Flugobjekt{
+public abstract class UFO extends Flugobjekt{
     private boolean aInGame;
     protected int aSpeed;
 

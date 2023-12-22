@@ -6,9 +6,7 @@ import java.awt.Point;
 abstract class Flugobjekt {
     protected Point aPosObjekt;
 
-    public Flugobjekt(){
-
-    }
+    public Flugobjekt() {}
     
     public abstract void draw(Graphics g);
 

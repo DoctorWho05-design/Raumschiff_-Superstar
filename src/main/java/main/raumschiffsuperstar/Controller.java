@@ -1,9 +1,11 @@
 package main.raumschiffsuperstar;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import main.raumschiffsuperstar.Util.Debbug;
 import main.raumschiffsuperstar.flugobjekte.*;
@@ -39,7 +41,7 @@ public class Controller {
     private void timerTick() {
         // TODO code Timer Tick
 
-
+        aGameGui.getGameField().repaint();
     }
 
     public void StartGame() {
@@ -49,5 +51,10 @@ public class Controller {
 
     public void drawGame(Graphics g) {
 
+    }
+
+    public void drawStartField(Graphics g){
+        if (aIsGameRunning) return;
+        g.drawRect(20, 20, 20, 20);
     }
 }

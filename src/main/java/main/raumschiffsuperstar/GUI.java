@@ -1,53 +1,38 @@
 package main.raumschiffsuperstar;
 
 import java.awt.Color;
-import java.awt.Graphics;
+
 import javax.swing.JPanel;
 
 public class GUI extends JPanel {
 
     private RaumschiffSuperstar aMain;
     private Controller aGameEngine;
-    // TODO make new JPannel Class for GameField GUI^
-    
+
     public GUI(RaumschiffSuperstar aMain) {
         this.aMain = aMain;
 
         aGameEngine = new Controller(this);
-
+        
         initComponents();
         initPanel();
     }
 
     private void initPanel(){
+        aGameField.setGameEngine(aGameEngine);
         this.setSize(aMain.getGameDim());
         this.setBackground(Color.gray);
-        aGameField.setBackground(Color.cyan);
     }
 
-    @Override
-    public void paintComponent(Graphics g){
-
-    }
+    public GameField getGameField() {return aGameField;}
 
     //! Generated Code (Do not Change)
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        aGameField = new javax.swing.JPanel();
         aStartButton = new javax.swing.JButton();
-
-        javax.swing.GroupLayout aGameFieldLayout = new javax.swing.GroupLayout(aGameField);
-        aGameField.setLayout(aGameFieldLayout);
-        aGameFieldLayout.setHorizontalGroup(
-            aGameFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1053, Short.MAX_VALUE)
-        );
-        aGameFieldLayout.setVerticalGroup(
-            aGameFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        aGameField = new main.raumschiffsuperstar.GameField();
 
         aStartButton.setText("START");
         aStartButton.addActionListener(new java.awt.event.ActionListener() {
@@ -56,14 +41,25 @@ public class GUI extends JPanel {
             }
         });
 
+        javax.swing.GroupLayout aGameFieldLayout = new javax.swing.GroupLayout(aGameField);
+        aGameField.setLayout(aGameFieldLayout);
+        aGameFieldLayout.setHorizontalGroup(
+            aGameFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1064, Short.MAX_VALUE)
+        );
+        aGameFieldLayout.setVerticalGroup(
+            aGameFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(aGameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(aGameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(aStartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -86,7 +82,7 @@ public class GUI extends JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel aGameField;
+    private main.raumschiffsuperstar.GameField aGameField;
     private javax.swing.JButton aStartButton;
     // End of variables declaration//GEN-END:variables
 }

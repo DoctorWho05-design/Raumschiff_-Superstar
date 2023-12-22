@@ -67,16 +67,19 @@ public class Controller {
                 System.out.println("Up");
                 aCharPos.y -= aSpeed;
                 break;
+
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
                 System.out.println("Down");
                 aCharPos.y += aSpeed;
                 break;
+
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
                 System.out.println("Left");
                 aCharPos.x -= aSpeed;
                 break;
+
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
                 System.out.println("Right");
@@ -122,7 +125,7 @@ public class Controller {
 
     public void drawGame(Graphics g) {
         if (!aIsGameRunning) return;
-        aGameField.setBackground(Color.cyan);
+        aGameField.setBackground(Color.blue);
         aRaumschiff.draw(g, aGameField);
     }
 

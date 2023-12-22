@@ -1,12 +1,14 @@
 package main.raumschiffsuperstar;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class GameField extends JPanel {
 
     private Controller aGameEngine;
+    private Dimension aGameFieldSize;
 
     public GameField() {
         initComponents();
@@ -15,6 +17,7 @@ public class GameField extends JPanel {
 
     private void initPanel(){
         this.setBackground(Color.cyan);
+        aGameFieldSize = new Dimension(this.getWidth(), this.getHeight());
     }
 
     @Override
@@ -31,6 +34,8 @@ public class GameField extends JPanel {
     private void drawGameFrame(Graphics g) {
         g.drawRect(0, 0, this.getWidth()-1, this.getHeight()-1);
     }
+
+    public Dimension getGameFieldSize() {return aGameFieldSize;}
 
     //! Generated Code (Do not Change)
     @SuppressWarnings("unchecked")

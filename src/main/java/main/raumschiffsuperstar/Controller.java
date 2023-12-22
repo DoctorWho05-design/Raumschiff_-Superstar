@@ -1,5 +1,6 @@
 package main.raumschiffsuperstar;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +17,7 @@ public class Controller {
     private final Debbug aDebbuger = new Debbug(true);
     private int aTime = 0;
     private int aRank;
+    private Dimension aGameFieldSize;
 
     private ArrayList<UFO> aKryptonitList;
     private ArrayList<UFO> aSuperstarList;
@@ -23,7 +25,6 @@ public class Controller {
 
     public Controller(GUI aGameGui){
         this.aGameGui = aGameGui;
-        
         initTimer();
     }
 
@@ -53,7 +54,7 @@ public class Controller {
         this.aKryptonitList = new ArrayList<>();
         this.aSuperstarList = new ArrayList<>();
         this.aRaumschiff = new Raumschiff();
-
+        
         aGameTimer.start();
         this.aIsGameRunning = true;
         aGameGui.getGameField().repaint();
@@ -92,4 +93,6 @@ public class Controller {
     }
 
     public boolean getIsGameRunning() {return aIsGameRunning;}
+
+    public void setGameFieldSize(Dimension aGameFieldSize) {this.aGameFieldSize = aGameFieldSize;}
 }

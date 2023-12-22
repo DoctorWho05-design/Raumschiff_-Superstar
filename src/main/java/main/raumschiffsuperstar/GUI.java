@@ -2,29 +2,31 @@ package main.raumschiffsuperstar;
 
 import java.awt.Color;
 import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
 
 public class GUI extends JPanel {
 
+    //* Parameter
     private RaumschiffSuperstar aMain;
     private Controller aGameEngine;
 
+    //* Constructor
     public GUI(RaumschiffSuperstar aMain) {
         this.aMain = aMain;
-
         aGameEngine = new Controller(this);
-        
         initComponents();
         initPanel();
     }
 
+    //* Method Create Panel (Only used once)
     private void initPanel(){
         aGameField.setGameEngine(aGameEngine);
         this.setSize(aMain.getGameDim());
         this.setBackground(Color.gray);
+        aGameEngine.setGameFieldSize(aGameField.getGameFieldSize());
     }
 
-    public GameField getGameField() {return aGameField;}
-
+    //* Methods Label Updates
     public void updatePoints(int aPoints) {
         if (aGameEngine.getIsGameRunning()) {
             aPointLabel.setText("Points: " + aPoints);
@@ -57,6 +59,29 @@ public class GUI extends JPanel {
         }
     }
 
+    //* ButtonListener
+    private void StartButtonActionPerformed(ActionEvent evt) {
+        if (aGameEngine.getIsGameRunning()) {
+            aStartButton.setText("START");
+            aGameEngine.stopGame();
+        } else {
+            aStartButton.setText("STOP");
+            aGameEngine.startGame();
+        }
+    }
+
+    private void SettingsButtonActionPerformed(ActionEvent evt) {
+        aGameEngine.startSettings();
+    }
+
+    private void HelpButtonActionPerformed(ActionEvent evt) {
+        aGameEngine.startHelp();
+    }
+
+    //* Getter
+    public GameField getGameField() {return aGameField;}
+
+
     //! Generated Code (Do not Change)
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -74,7 +99,7 @@ public class GUI extends JPanel {
         aStartButton.setText("START");
         aStartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aStartButtonActionPerformed(evt);
+                StartButtonActionPerformed(evt);
             }
         });
 
@@ -100,14 +125,14 @@ public class GUI extends JPanel {
         aSettingsButton.setText("Settings");
         aSettingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aSettingsButtonActionPerformed(evt);
+                SettingsButtonActionPerformed(evt);
             }
         });
 
         aHelpButton.setText("Help");
         aHelpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aHelpButtonActionPerformed(evt);
+                HelpButtonActionPerformed(evt);
             }
         });
 
@@ -155,25 +180,6 @@ public class GUI extends JPanel {
                         .addGap(16, 16, 16))))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void aStartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aStartButtonActionPerformed
-        if (aGameEngine.getIsGameRunning()) {
-            aStartButton.setText("START");
-            aGameEngine.stopGame();
-        } else {
-            aStartButton.setText("STOP");
-            aGameEngine.startGame();
-        }
-       
-    }//GEN-LAST:event_aStartButtonActionPerformed
-
-    private void aSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        aGameEngine.startSettings();
-    }
-
-    private void aHelpButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        aGameEngine.startHelp();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private main.raumschiffsuperstar.GameField aGameField;

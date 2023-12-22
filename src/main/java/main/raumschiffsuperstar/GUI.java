@@ -26,7 +26,35 @@ public class GUI extends JPanel {
     public GameField getGameField() {return aGameField;}
 
     public void updatePoints(int aPoints) {
-        aPointLabel.setText("Points: " + aPoints);
+        if (aGameEngine.getIsGameRunning()) {
+            aPointLabel.setText("Points: " + aPoints);
+        } else {
+            aPointLabel.setText("Points: ");
+        }
+    }
+
+    public void updateTimer(int aTime) {
+        if (aGameEngine.getIsGameRunning()) {
+            aTimeLabel.setText("Time: " + aTime);
+        } else {
+            aTimeLabel.setText("Time: ");
+        }
+    }
+
+    public void updateLives(int aLife) {
+        if (aGameEngine.getIsGameRunning()) {
+            aLiveLabel.setText("Lives: " + aLife);
+        } else {
+            aLiveLabel.setText("Lives: ");
+        }
+    }
+
+    public void updateRank(int aRank) {
+        if (aGameEngine.getIsGameRunning()) {
+            aRankLabel.setText("Rank: " + aRank);
+        } else {
+            aRankLabel.setText("Rank: ");
+        }
     }
 
     //! Generated Code (Do not Change)
@@ -129,7 +157,14 @@ public class GUI extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aStartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aStartButtonActionPerformed
-        aGameEngine.startGame();
+        if (aGameEngine.getIsGameRunning()) {
+            aStartButton.setText("START");
+            aGameEngine.stopGame();
+        } else {
+            aStartButton.setText("STOP");
+            aGameEngine.startGame();
+        }
+       
     }//GEN-LAST:event_aStartButtonActionPerformed
 
     private void aSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {

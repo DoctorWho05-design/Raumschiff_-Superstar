@@ -14,6 +14,8 @@ public class Controller {
     private Timer aGameTimer;
     private boolean aIsGameRunning = false;
     private final Debbug aDebbuger = new Debbug(true);
+    private int aTime = 0;
+    private int aRank;
 
     private ArrayList<UFO> aKryptonitList;
     private ArrayList<UFO> aSuperstarList;
@@ -21,9 +23,7 @@ public class Controller {
 
     public Controller(GUI aGameGui){
         this.aGameGui = aGameGui;
-        this.aKryptonitList = new ArrayList<>();
-        this.aSuperstarList = new ArrayList<>();
-        this.aRaumschiff = new Raumschiff();
+        
         initTimer();
     }
 
@@ -38,13 +38,37 @@ public class Controller {
 
     private void timerTick() {
         // TODO code Timer Tick
-
+        if ((aTime % 30) == 0) aRank++;
+        aTime++;
+        aGameGui.updateTimer(aTime);
+        aGameGui.updateLives(aRaumschiff.getLifes());
+        aGameGui.updatePoints(aRaumschiff.getPoints());
+        aGameGui.updateRank(aRank);
         aGameGui.getGameField().repaint();
     }
 
     public void startGame() {
         System.out.println("Start Game!");
         // TODO code Game Start
+        this.aKryptonitList = new ArrayList<>();
+        this.aSuperstarList = new ArrayList<>();
+        this.aRaumschiff = new Raumschiff();
+
+        aGameTimer.start();
+        this.aIsGameRunning = true;
+        aGameGui.getGameField().repaint();
+    }
+
+    public void stopGame() {
+        System.out.println("Game Stoped!");
+        // TODO code Stop Game
+        this.aTime = 0;
+        this.aRank = 0;
+        this.aIsGameRunning = false;
+        aGameTimer.stop();
+        aGameGui.updateTimer(aTime);
+        aGameGui.getGameField().repaint();
+
     }
 
     public void drawGame(Graphics g) {
@@ -59,10 +83,13 @@ public class Controller {
     public void startSettings() {
         System.out.println("Settings started!");
         // TODO code Settings
+        
     }
 
     public void startHelp() {
         System.out.println("Help Menu strted!");
         // TODO code Help Frame
     }
+
+    public boolean getIsGameRunning() {return aIsGameRunning;}
 }

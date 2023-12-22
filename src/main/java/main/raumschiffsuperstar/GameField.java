@@ -2,7 +2,6 @@ package main.raumschiffsuperstar;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import javax.swing.JPanel;
 
 public class GameField extends JPanel {
@@ -30,7 +29,7 @@ public class GameField extends JPanel {
     }
 
     private void drawGameFrame(Graphics g) {
-        g.drawRect(0, 0, getWidth()-1, getHeight()-1);
+        g.drawRect(0, 0, this.getWidth()-1, this.getHeight()-1);
     }
 
     //! Generated Code (Do not Change)

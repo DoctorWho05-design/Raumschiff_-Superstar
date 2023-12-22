@@ -1,7 +1,6 @@
 package main.raumschiffsuperstar;
 
 import java.awt.Color;
-
 import javax.swing.JPanel;
 
 public class GUI extends JPanel {
@@ -26,6 +25,10 @@ public class GUI extends JPanel {
 
     public GameField getGameField() {return aGameField;}
 
+    public void updatePoints(int aPoints) {
+        aPointLabel.setText("Points: " + aPoints);
+    }
+
     //! Generated Code (Do not Change)
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -33,7 +36,7 @@ public class GUI extends JPanel {
 
         aStartButton = new javax.swing.JButton();
         aGameField = new main.raumschiffsuperstar.GameField();
-        jLabel1 = new javax.swing.JLabel();
+        aPointLabel = new javax.swing.JLabel();
 
         aStartButton.setText("START");
         aStartButton.addActionListener(new java.awt.event.ActionListener() {
@@ -53,7 +56,7 @@ public class GUI extends JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("jLabel1");
+        aPointLabel.setText("Points: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,7 +68,7 @@ public class GUI extends JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(aStartButton, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(aPointLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
@@ -77,7 +80,7 @@ public class GUI extends JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(aStartButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aPointLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 605, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -91,6 +94,6 @@ public class GUI extends JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private main.raumschiffsuperstar.GameField aGameField;
     private javax.swing.JButton aStartButton;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel aPointLabel;
     // End of variables declaration//GEN-END:variables
 }

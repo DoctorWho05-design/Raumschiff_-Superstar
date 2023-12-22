@@ -27,7 +27,6 @@ public class Controller {
     private GameField aGameField;
     private Image aStartFieldImage;
 
-
     public Controller(GUI aGameGui){
         this.aGameGui = aGameGui;
         initTimer();
@@ -84,7 +83,7 @@ public class Controller {
         aGameFieldSize = aGameField.getGameFieldSize();
         ImageIcon aStartFieldIcon = new ImageIcon("./public/PressStart.gif");
         aStartFieldImage = aStartFieldIcon.getImage();
-        g.drawImage(aStartFieldImage, 40, 22, aGameField);
+        g.drawImage(aStartFieldImage, 250, 100, aGameField);
     }
 
     public void startSettings() {

@@ -42,7 +42,7 @@ public class Controller {
         aGameGui.getGameField().repaint();
     }
 
-    public void StartGame() {
+    public void startGame() {
         System.out.println("Start Game!");
         // TODO code Game Start
     }
@@ -54,5 +54,15 @@ public class Controller {
     public void drawStartField(Graphics g){
         if (aIsGameRunning) return;
         g.drawRect(20, 20, 20, 20);
+    }
+
+    public void startDebbug() {
+        System.out.println("Debuger started!");
+        // TODO code Debbeger
+    }
+
+    public void startHelp() {
+        System.out.println("Help Menu strted!");
+        // TODO code Help Frame
     }
 }

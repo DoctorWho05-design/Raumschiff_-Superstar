@@ -26,7 +26,7 @@ public class GUI extends JPanel {
     public GameField getGameField() {return aGameField;}
 
     public void updatePoints(int aPoints) {
-        //aPointLabel.setText("Points: " + aPoints);
+        aPointLabel.setText("Points: " + aPoints);
     }
 
     //! Generated Code (Do not Change)
@@ -36,10 +36,10 @@ public class GUI extends JPanel {
 
         aStartButton = new javax.swing.JButton();
         aGameField = new main.raumschiffsuperstar.GameField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        aPointLabel = new javax.swing.JLabel();
+        aTimeLabel = new javax.swing.JLabel();
+        aRankLabel = new javax.swing.JLabel();
+        aLiveLabel = new javax.swing.JLabel();
         aDebugModeButton = new javax.swing.JButton();
         aHelpButton = new javax.swing.JButton();
 
@@ -61,17 +61,27 @@ public class GUI extends JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("jLabel1");
+        aPointLabel.setText("Points: ");
 
-        jLabel2.setText("jLabel1");
+        aTimeLabel.setText("Time: ");
 
-        jLabel3.setText("jLabel1");
+        aRankLabel.setText("Rank: ");
 
-        jLabel4.setText("jLabel1");
+        aLiveLabel.setText("Lives: ");
 
         aDebugModeButton.setText("Debug");
+        aDebugModeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aDebugModeButtonActionPerformed(evt);
+            }
+        });
 
         aHelpButton.setText("Help");
+        aHelpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aHelpButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -84,10 +94,10 @@ public class GUI extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(aStartButton, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(aPointLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(aTimeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(aRankLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(aLiveLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(aDebugModeButton)
                     .addComponent(aHelpButton))
                 .addGap(24, 24, 24))
@@ -103,13 +113,13 @@ public class GUI extends JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(aStartButton)
                         .addGap(41, 41, 41)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aRankLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aPointLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aLiveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 400, Short.MAX_VALUE)
                         .addComponent(aDebugModeButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -119,18 +129,25 @@ public class GUI extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aStartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aStartButtonActionPerformed
-        aGameEngine.StartGame();
+        aGameEngine.startGame();
     }//GEN-LAST:event_aStartButtonActionPerformed
 
+    private void aDebugModeButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        aGameEngine.startDebbug();
+    }
+
+    private void aHelpButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        aGameEngine.startHelp();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private main.raumschiffsuperstar.GameField aGameField;
     private javax.swing.JButton aStartButton;
     private javax.swing.JButton aDebugModeButton;
     private javax.swing.JButton aHelpButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel aPointLabel;
+    private javax.swing.JLabel aTimeLabel;
+    private javax.swing.JLabel aRankLabel;
+    private javax.swing.JLabel aLiveLabel;
     // End of variables declaration//GEN-END:variables
 }

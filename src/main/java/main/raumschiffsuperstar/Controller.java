@@ -87,7 +87,7 @@ public class Controller {
                 break;
         }
 
-        aRaumschiff.move(aCharPos);
+        checkCollision(aCharPos);
     }
 
     private void timerTick() {        
@@ -111,6 +111,10 @@ public class Controller {
         aGameGui.getGameField().repaint();
         aGameField.requestFocusInWindow();
         aGameField.addKeyListener(aKeyGameControll);
+
+        for (int i = 0; i < 10; i++) {
+            aSuperstarList.add( new Superstar());
+        }
     }
 
     public void stopGame() {
@@ -127,6 +131,9 @@ public class Controller {
         if (!aIsGameRunning) return;
         aGameField.setBackground(Color.blue);
         aRaumschiff.draw(g, aGameField);
+        for (UFO superstar : aSuperstarList) {
+            superstar.draw(g, aGameField);
+        }
     }
 
     public void drawStartField(Graphics g){
@@ -136,6 +143,10 @@ public class Controller {
         ImageIcon aStartFieldIcon = new ImageIcon("./public/PressStart.gif");
         aStartFieldImage = aStartFieldIcon.getImage();
         g.drawImage(aStartFieldImage, 250, 100, aGameField);
+    }
+
+    private void checkCollision(Point aPosObject){
+
     }
 
     public void startSettings() {

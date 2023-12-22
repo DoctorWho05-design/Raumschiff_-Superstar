@@ -42,9 +42,7 @@ public class Controller {
         });
     }
 
-    private void timerTick() {
-        // TODO code Timer Tick
-        
+    private void timerTick() {        
         if ((aTime % 30) == 0) aRank++;
         aTime++;
 

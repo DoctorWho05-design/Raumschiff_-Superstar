@@ -17,13 +17,13 @@ import java.awt.event.KeyEvent;
 
 public class Controller {
 
+    //* Parameter
     private GUI aGameGui;
     private Timer aGameTimer;
     private boolean aIsGameRunning = false;
     private final Debbug aDebbuger = new Debbug(true);
     private int aTime = 0;
     private int aRank;
-    private Dimension aGameFieldSize;
     private ArrayList<UFO> aKryptonitList;
     private ArrayList<UFO> aSuperstarList;
     private Raumschiff aRaumschiff;
@@ -31,12 +31,14 @@ public class Controller {
     private Image aStartFieldImage;
     private KeyAdapter aKeyGameControll;
 
+    //* Constructor
     public Controller(GUI aGameGui){
         this.aGameGui = aGameGui;
         initTimer();
         initKeyListener();
     }
 
+    //* Timer 1 Sec
     private void initTimer(){
         aGameTimer = new Timer(1000, new ActionListener() {
             @Override
@@ -48,6 +50,19 @@ public class Controller {
         aGameTimer.stop();
     }
 
+    private void timerTick() {        
+        if ((aTime % 30) == 0) aRank++;
+        aTime++;
+
+        aGameGui.updateTimer(aTime);
+        aGameGui.updateLives(aRaumschiff.getLifes());
+        aGameGui.updatePoints(aRaumschiff.getPoints());
+        aGameGui.updateRank(aRank);
+
+        aGameGui.getGameField().repaint();
+    }
+
+    //* KeyListener
     private void initKeyListener() {
         aKeyGameControll = new KeyAdapter() {
             @Override
@@ -90,18 +105,32 @@ public class Controller {
         checkCollision(aCharPos);
     }
 
-    private void timerTick() {        
-        if ((aTime % 30) == 0) aRank++;
-        aTime++;
+    private void checkCollision(Point aPosObject){
 
-        aGameGui.updateTimer(aTime);
-        aGameGui.updateLives(aRaumschiff.getLifes());
-        aGameGui.updatePoints(aRaumschiff.getPoints());
-        aGameGui.updateRank(aRank);
-
-        aGameGui.getGameField().repaint();
     }
 
+    //* Draw GameField (Checks Current State)
+    public void drawGame(Graphics g) {
+        if (!aIsGameRunning) return;
+        aGameField.setBackground(Color.cyan);
+        aRaumschiff.draw(g, aGameField);
+        for (UFO superstar : aSuperstarList) {
+            superstar.draw(g, aGameField);
+        }
+    }
+
+    public void drawStartField(Graphics g){
+        if (aIsGameRunning) return;
+        aGameField.setBackground(Color.black);
+        ImageIcon aStartFieldIcon = new ImageIcon("./public/PressStart.gif");
+        aStartFieldImage = aStartFieldIcon.getImage();
+        g.drawImage(aStartFieldImage, 250, 100, aGameField);
+    }
+
+    
+
+
+    //* Button Handler
     public void startGame() {
         this.aKryptonitList = new ArrayList<>(10);
         this.aSuperstarList = new ArrayList<>(10);
@@ -124,29 +153,6 @@ public class Controller {
         aGameTimer.stop();
         aGameGui.updateTimer(aTime);
         aGameGui.getGameField().repaint();
-
-    }
-
-    public void drawGame(Graphics g) {
-        if (!aIsGameRunning) return;
-        aGameField.setBackground(Color.blue);
-        aRaumschiff.draw(g, aGameField);
-        for (UFO superstar : aSuperstarList) {
-            superstar.draw(g, aGameField);
-        }
-    }
-
-    public void drawStartField(Graphics g){
-        if (aIsGameRunning) return;
-        aGameField.setBackground(Color.black);
-        aGameFieldSize = aGameField.getGameFieldSize();
-        ImageIcon aStartFieldIcon = new ImageIcon("./public/PressStart.gif");
-        aStartFieldImage = aStartFieldIcon.getImage();
-        g.drawImage(aStartFieldImage, 250, 100, aGameField);
-    }
-
-    private void checkCollision(Point aPosObject){
-
     }
 
     public void startSettings() {
@@ -160,9 +166,10 @@ public class Controller {
         // TODO code Help Frame
     }
 
+    //* Getter
     public boolean getIsGameRunning() {return aIsGameRunning;}
-
-    public void setGameField(GameField aGameField) {this.aGameField = aGameField;}
-
     public KeyAdapter getGameKeyControlls() {return aKeyGameControll;}
+
+    //* Setter
+    public void setGameField(GameField aGameField) {this.aGameField = aGameField;}
 }

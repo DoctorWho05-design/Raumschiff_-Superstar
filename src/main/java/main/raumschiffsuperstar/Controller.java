@@ -38,6 +38,11 @@ public class Controller {
         initKeyListener();
     }
 
+    //* Check Collision Objects
+    public void checkCollsionObject() {
+        
+    }
+
     //* Timer 1 Sec
     private void initTimer(){
         aGameTimer = new Timer(1000, new ActionListener() {

@@ -9,6 +9,7 @@ public abstract class UFO extends Flugobjekt{
     public UFO(String aCharProfileImageSource) {
         super(aCharProfileImageSource);
     }
+    
     //* Method Used in timerTick() to check if the Object Hit the Spaceship
     public Boolean checkHitShip() {
         // TODO code Check if Object hit Ship

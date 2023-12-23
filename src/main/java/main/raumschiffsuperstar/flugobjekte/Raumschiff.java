@@ -25,9 +25,7 @@ public class Raumschiff extends Flugobjekt{
 
     //! Wird nicht benötigt
     @Override
-    public void move(Point aPos) {
-
-    }
+    public void move(Point aPos) {}
     
     //* Getter
     public int getPoints() {return aPoints;}

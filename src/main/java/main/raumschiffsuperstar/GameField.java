@@ -20,8 +20,6 @@ public class GameField extends JPanel {
     //* Method Create Panel (Only used once)
     public void initPanel(){
         aGameFieldSize = new Dimension(this.getWidth(), this.getHeight());
-        this.addKeyListener(aGameEngine.getGameKeyControlls());
-        //System.out.println(aGameFieldSize);
     }
 
     //* Panel Draw Methods

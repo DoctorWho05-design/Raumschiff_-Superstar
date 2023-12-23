@@ -1,9 +1,9 @@
 package main.raumschiffsuperstar.flugobjekte;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 
@@ -14,6 +14,7 @@ abstract class Flugobjekt {
     protected final int aSizeObj = 80;
     protected Image aStartFieldImage;
     protected int aSpeed;
+    protected Random random = new Random();
 
     //* Constructor
     public Flugobjekt(String aCharProfileImageSource) {

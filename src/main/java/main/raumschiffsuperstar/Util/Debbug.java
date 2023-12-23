@@ -34,4 +34,9 @@ public class Debbug {
         printTrenner();
         System.out.println();
     }
+
+    public void keyPressed(String aKey) {
+        if (!aDebugMode) return;
+        System.out.println(aKey + " Pressed");
+    }
 }

@@ -12,14 +12,14 @@ public class GUI extends JPanel {
 
     //* Constructor
     public GUI(RaumschiffSuperstar aMain) {
-        this.aMain = aMain;
-        aGameEngine = new Controller(this);
         initComponents();
-        initPanel();
+        initPanel(aMain);
     }
 
     //* Method Create Panel (Only used once)
-    private void initPanel(){
+    private void initPanel(RaumschiffSuperstar aMain){
+        this.aMain = aMain;
+        aGameEngine = new Controller(this);
         aGameField.setGameEngine(aGameEngine);
         this.setSize(aMain.getGameDim());
         this.setBackground(Color.gray);
@@ -27,34 +27,16 @@ public class GUI extends JPanel {
     }
 
     //* Methods Label Updates
-    public void updatePoints(int aPoints) {
+    public void updateLabel(int aPoints, int aTime, int aLife, int aRank) {
         if (aGameEngine.getIsGameRunning()) {
             aPointLabel.setText("Points: " + aPoints);
-        } else {
-            aPointLabel.setText("Points: ");
-        }
-    }
-
-    public void updateTimer(int aTime) {
-        if (aGameEngine.getIsGameRunning()) {
             aTimeLabel.setText("Time: " + aTime);
-        } else {
-            aTimeLabel.setText("Time: ");
-        }
-    }
-
-    public void updateLives(int aLife) {
-        if (aGameEngine.getIsGameRunning()) {
             aLiveLabel.setText("Lives: " + aLife);
-        } else {
-            aLiveLabel.setText("Lives: ");
-        }
-    }
-
-    public void updateRank(int aRank) {
-        if (aGameEngine.getIsGameRunning()) {
             aRankLabel.setText("Rank: " + aRank);
         } else {
+            aPointLabel.setText("Points: ");
+            aTimeLabel.setText("Time: ");
+            aLiveLabel.setText("Lives: ");
             aRankLabel.setText("Rank: ");
         }
     }
@@ -67,7 +49,6 @@ public class GUI extends JPanel {
         } else {
             aStartButton.setText("STOP");
             aGameEngine.startGame();
-            aGameField.initPanel();
         }
     }
 

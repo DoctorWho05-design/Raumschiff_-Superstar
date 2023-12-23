@@ -2,7 +2,6 @@ package main.raumschiffsuperstar.flugobjekte;
 
 import java.awt.Graphics;
 import java.awt.Point;
-import java.util.Random;
 
 import main.raumschiffsuperstar.GameField;
 
@@ -13,7 +12,7 @@ public class Superstar extends UFO{
     }
     @Override
     public void draw(Graphics g, GameField aGameField) {
-        Random random = new Random();
+        
         if (this.aPosObjekt == null) this.aPosObjekt = new Point(random.nextInt(aGameField.getWidth()), random.nextInt(aGameField.getHeight()));
         g.drawImage(aStartFieldImage, aPosObjekt.x, aPosObjekt.y, aGameField);
     }

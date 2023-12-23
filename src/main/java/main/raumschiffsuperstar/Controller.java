@@ -21,7 +21,7 @@ public class Controller {
     private GUI aGameGui;
     private Timer aGameTimer;
     private boolean aIsGameRunning = false;
-    private final Debbug aDebbuger = new Debbug(true);
+    private final Debbug aDebbuger = new Debbug(false);
     private int aTime = 0;
     private int aRank;
     private ArrayList<UFO> aKryptonitList;
@@ -53,12 +53,7 @@ public class Controller {
     private void timerTick() {        
         if ((aTime % 30) == 0) aRank++;
         aTime++;
-
-        aGameGui.updateTimer(aTime);
-        aGameGui.updateLives(aRaumschiff.getLifes());
-        aGameGui.updatePoints(aRaumschiff.getPoints());
-        aGameGui.updateRank(aRank);
-
+        aGameGui.updateLabel(aRaumschiff.getPoints(), aTime, aRaumschiff.getLifes(), aRank);
         aGameGui.getGameField().repaint();
     }
 
@@ -79,34 +74,28 @@ public class Controller {
         switch (keyCode) {
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                System.out.println("Up");
+                aDebbuger.keyPressed("Up");
                 aCharPos.y -= aSpeed;
                 break;
 
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
-                System.out.println("Down");
+                aDebbuger.keyPressed("Down");
                 aCharPos.y += aSpeed;
                 break;
 
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
-                System.out.println("Left");
+                aDebbuger.keyPressed("Left");
                 aCharPos.x -= aSpeed;
                 break;
 
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                System.out.println("Right");
+                aDebbuger.keyPressed("Right");
                 aCharPos.x += aSpeed;
                 break;
         }
-
-        checkCollision(aCharPos);
-    }
-
-    private void checkCollision(Point aPosObject){
-
     }
 
     //* Draw GameField (Checks Current State)
@@ -151,7 +140,7 @@ public class Controller {
         this.aRank = 0;
         this.aIsGameRunning = false;
         aGameTimer.stop();
-        aGameGui.updateTimer(aTime);
+        aGameGui.updateLabel(aRaumschiff.getPoints(), aTime, aRaumschiff.getLifes(), aRank);
         aGameGui.getGameField().repaint();
     }
 
@@ -168,7 +157,6 @@ public class Controller {
 
     //* Getter
     public boolean getIsGameRunning() {return aIsGameRunning;}
-    public KeyAdapter getGameKeyControlls() {return aKeyGameControll;}
 
     //* Setter
     public void setGameField(GameField aGameField) {this.aGameField = aGameField;}

@@ -53,6 +53,7 @@ public class Controller {
     private void timerTick() {        
         if ((aTime % 30) == 0) aRank++;
         aTime++;
+        checkCollision();
         aGameGui.updateLabel(aRaumschiff.getPoints(), aTime, aRaumschiff.getLifes(), aRank);
         aGameGui.getGameField().repaint();
     }
@@ -96,6 +97,8 @@ public class Controller {
                 aCharPos.x += aSpeed;
                 break;
         }
+
+        checkCollision();
     }
 
     //* Draw GameField (Checks Current State)
@@ -153,6 +156,10 @@ public class Controller {
     public void startHelp() {
         System.out.println("Help Menu strted!");
         // TODO code Help Frame
+    }
+
+    private void checkCollision(){
+
     }
 
     //* Getter

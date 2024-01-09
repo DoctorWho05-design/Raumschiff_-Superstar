@@ -30,4 +30,6 @@ public class Raumschiff extends Flugobjekt{
     //* Getter
     public int getPoints() {return aPoints;}
     public int getLifes() {return aLifes;}
+
+    public void addPoints() {aPoints += 10;}
 }

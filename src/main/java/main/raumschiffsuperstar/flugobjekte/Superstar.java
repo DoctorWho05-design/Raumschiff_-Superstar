@@ -9,6 +9,7 @@ public class Superstar extends UFO{
 
     public Superstar() {
         super("./public/Superstar.png");
+        this.aPosObjekt = null;
     }
     @Override
     public void draw(Graphics g, GameField aGameField) {

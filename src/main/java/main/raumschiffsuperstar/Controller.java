@@ -159,7 +159,18 @@ public class Controller {
     }
 
     private void checkCollision(){
+        for (UFO aSuperstar : aSuperstarList) {
+            Point aCords = new Point(aSuperstar.getPosObjekt());
+            if (hit(aCords)) {
+                aRaumschiff.addPoints();
+                aSuperstar = new Superstar();
+                aSuperstar.draw(aGameField.getGraphics(), aGameField);
+            }
+        }
+    }
 
+    private boolean hit(Point aCords) {
+        return true;
     }
 
     //* Getter

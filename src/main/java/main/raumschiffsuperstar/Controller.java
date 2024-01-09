@@ -102,10 +102,10 @@ public class Controller {
     public void drawGame(Graphics g) {
         if (!aIsGameRunning) return;
         aGameField.setBackground(Color.cyan);
-        aRaumschiff.draw(g, aGameField);
         for (UFO superstar : aSuperstarList) {
             superstar.draw(g, aGameField);
         }
+        aRaumschiff.draw(g, aGameField);
     }
 
     public void drawStartField(Graphics g){

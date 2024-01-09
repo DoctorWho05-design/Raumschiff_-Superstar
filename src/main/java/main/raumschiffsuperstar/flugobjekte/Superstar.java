@@ -14,7 +14,7 @@ public class Superstar extends UFO{
     public void draw(Graphics g, GameField aGameField) {
         
         if (this.aPosObjekt == null) this.aPosObjekt = new Point(random.nextInt(aGameField.getWidth()), random.nextInt(aGameField.getHeight()));
-        g.drawImage(aStartFieldImage, aPosObjekt.x, aPosObjekt.y, aGameField);
+        g.drawImage(aStartFieldImage, aPosObjekt.x, aPosObjekt.y, aSize.width, aSize.height, aGameField);
     }
 
     @Override

@@ -165,13 +165,28 @@ public class Controller {
                 aRaumschiff.addPoints();
                 aSuperstar = new Superstar();
                 aSuperstar.draw(aGameField.getGraphics(), aGameField);
+                System.out.println(aSuperstar);
             }
         }
     }
 
     private boolean hit(Point aCords) {
-        return true;
-    }
+        if (aCords == null) return false;
+      
+        Point aTempCords = new Point(aCords);
+        Point aTempRaumCords = new Point(aRaumschiff.getPosObjekt());
+      
+        if (aTempCords.x < aTempRaumCords.x + Flugobjekt.SIZE.width &&
+            aTempCords.x + Flugobjekt.SIZE.width > aTempRaumCords.x) {
+      
+          if (aTempCords.y < aTempRaumCords.y + Flugobjekt.SIZE.height &&
+              aTempCords.y + Flugobjekt.SIZE.height > aTempRaumCords.y) {
+            return true;
+          }
+        }
+      
+        return false;
+      }
 
     //* Getter
     public boolean getIsGameRunning() {return aIsGameRunning;}

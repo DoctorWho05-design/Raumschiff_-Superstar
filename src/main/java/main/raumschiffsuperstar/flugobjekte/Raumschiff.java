@@ -20,7 +20,7 @@ public class Raumschiff extends Flugobjekt{
     @Override
     public void draw(Graphics g, GameField aGameField) {
         if (this.aPosObjekt == null) this.aPosObjekt = new Point(20, (aGameField.getHeight()/2) - (this.aSizeObj/2));
-        g.drawImage(aStartFieldImage, aPosObjekt.x, aPosObjekt.y, aSize.width + 20, aSize.height + 20, aGameField);
+        g.drawImage(aStartFieldImage, aPosObjekt.x, aPosObjekt.y, SIZE.width + 20, SIZE.height + 20, aGameField);
     }
 
     //! Wird nicht benötigt

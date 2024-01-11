@@ -164,7 +164,7 @@ public class Controller {
             if (hit(aCords)) {
                 aRaumschiff.addPoints();
                 aSuperstar = new Superstar();
-                aSuperstar.draw(aGameField.getGraphics(), aGameField);
+                aGameGui.repaint();
                 System.out.println(aSuperstar);
             }
         }

@@ -10,7 +10,7 @@ public class Superstar extends UFO{
     public Superstar() {
         super("./public/Superstar.png");
         this.aPosObjekt = null;
-        System.out.println(aPosObjekt);
+        //System.out.println(aPosObjekt);
     }
 
     @Override

@@ -30,6 +30,7 @@ public class Controller {
     private GameField aGameField;
     private Image aStartFieldImage;
     private KeyAdapter aKeyGameControll;
+    private int aSpeedUFOs;
 
     //* Constructor
     public Controller(GUI aGameGui){
@@ -48,24 +49,45 @@ public class Controller {
         });
         aGameTimer.stop();
 
-        aMoveTimer = new Timer(1000, null);
+        aMoveTimer = new Timer(aSpeedUFOs, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timerMoveTick();
+            }
+        });
         aMoveTimer.stop();
     }
 
-    private void timerGameTick() {        
-        if ((aTime % 30) == 0){ 
+    private void timerGameTick() {    
+        //! Warum wird der Stop Screen ausgelöst wenn der nächste Rang erreicht ist    
+        if ((aTime % 5) == 0){ 
             aRank++;
-            for (UFO aSuperstar : aSuperstarList) {
-                aSuperstar.updateRank();
-            }
+            //! hat was mit MoveTimer zu Tun
+            aMoveTimer.setDelay(aMoveTimer.getDelay() / 2);
         }
         aTime++;
         checkCollision();
         for (UFO aSuperstar : aSuperstarList) {
             aSuperstar.move(aRaumschiff.getPosObjekt());
         }
+        for (UFO aKryptonit : aKryptonitList) {
+            aKryptonit.move(aRaumschiff.getPosObjekt());
+        }
         aGameGui.updateLabel(aRaumschiff.getPoints(), aTime, aRaumschiff.getLifes(), aRank);
         aGameGui.getGameField().repaint();
+    }
+
+    private void timerMoveTick() {
+        for (UFO aSuperstar : aSuperstarList) {
+            aSuperstar.move(aRaumschiff.getPosObjekt());
+        }
+        for (UFO aKryptonit : aKryptonitList) {
+            aKryptonit.move(aRaumschiff.getPosObjekt());
+        }
+        checkCollision();
+        //! Die Life werden ins negative gezogen
+        //if (aRaumschiff.getLifes() <= 0) stopGame();
+        aGameField.repaint();
     }
 
     //* KeyListener
@@ -80,35 +102,48 @@ public class Controller {
 
     private void handleKeyPress(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        Point aCharPos = aRaumschiff.getPosObjekt();
+        Point aCharPos = new Point(aRaumschiff.getPosObjekt());
         int aSpeed = aRaumschiff.getSpeed();
         switch (keyCode) {
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
                 aDebbuger.keyPressed("Up");
                 aCharPos.y -= aSpeed;
+                if (checkIfWall(aCharPos)) return;
                 break;
 
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
                 aDebbuger.keyPressed("Down");
                 aCharPos.y += aSpeed;
+                if (checkIfWall(aCharPos)) return;
                 break;
 
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
                 aDebbuger.keyPressed("Left");
                 aCharPos.x -= aSpeed;
+                if (checkIfWall(aCharPos)) return;
                 break;
 
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
                 aDebbuger.keyPressed("Right");
                 aCharPos.x += aSpeed;
+                if (checkIfWall(aCharPos)) return;
                 break;
         }
-
+        aRaumschiff.setPos(aCharPos);
         checkCollision();
+    }
+
+    private Boolean checkIfWall(Point aPosObjekt) {
+        if (aPosObjekt.x < 0 ||
+            aPosObjekt.x > aGameField.getWidth() - aRaumschiff.getSizeObj() ||
+            aPosObjekt.y < 0 ||
+            aPosObjekt.y > aGameField.getHeight() - aRaumschiff.getSizeObj()
+        ) return true;
+        return false;
     }
 
     //* Draw GameField (Checks Current State)
@@ -117,6 +152,9 @@ public class Controller {
         aGameField.setBackground(Color.cyan);
         for (UFO superstar : aSuperstarList) {
             superstar.draw(g, aGameField);
+        }
+        for (UFO aKryptonit : aKryptonitList) {
+            aKryptonit.draw(g, aGameField);
         }
         aRaumschiff.draw(g, aGameField);
     }
@@ -134,10 +172,13 @@ public class Controller {
 
     //* Button Handler
     public void startGame() {
+        aSpeedUFOs = 100;
+        aMoveTimer.setDelay(aSpeedUFOs);
         this.aKryptonitList = new ArrayList<>(10);
         this.aSuperstarList = new ArrayList<>(10);
         this.aRaumschiff = new Raumschiff();
         aGameTimer.start();
+        aMoveTimer.start();
         this.aIsGameRunning = true;
         aGameGui.getGameField().repaint();
         aGameField.requestFocusInWindow();
@@ -146,6 +187,10 @@ public class Controller {
         for (int i = 0; i < 10; i++) {
             aSuperstarList.add( new Superstar(aGameField));
         }
+
+        for (int i = 0; i < 10; i++) {
+            aKryptonitList.add( new Kryptonit(aGameField));
+        }
     }
 
     public void stopGame() {
@@ -153,6 +198,7 @@ public class Controller {
         this.aRank = 0;
         this.aIsGameRunning = false;
         aGameTimer.stop();
+        aMoveTimer.stop();
         aGameGui.updateLabel(aRaumschiff.getPoints(), aTime, aRaumschiff.getLifes(), aRank);
         aGameGui.getGameField().repaint();
     }
@@ -168,25 +214,36 @@ public class Controller {
         // TODO code Help Frame
     }
 
+    //! Check Collision wird ab dem Nächsten Rang ausgelöst
     private void checkCollision(){
         for (int i = 0; i < aSuperstarList.size(); i++) {
             if (aSuperstarList.get(i).hit(aRaumschiff)) {
                 removeUFO(true, i);
-                break;
+                aGameGui.repaint();
+                return;
+            }
+        }
+
+        for (int i = 0; i < aKryptonitList.size(); i++) {
+            if (aKryptonitList.get(i).hit(aRaumschiff)) {
+                removeUFO(false, i);
+                aGameGui.repaint();
+                return;
             }
         }
         
-        aGameGui.repaint();
+        
     }
 
     private void removeUFO(boolean aIsSuperstar, int aIndex) {
-        aRaumschiff.addPoints();
+        
         if (aIsSuperstar) {
-           
+            aRaumschiff.addPoints();
             aSuperstarList.remove(aIndex);
             aSuperstarList.add(aIndex, new Superstar(aGameField));
         } else {
-            aSuperstarList.remove(aIndex);
+            aRaumschiff.removeLife();
+            aKryptonitList.remove(aIndex);
             aKryptonitList.add(aIndex, new Kryptonit(aGameField));
         }
     }

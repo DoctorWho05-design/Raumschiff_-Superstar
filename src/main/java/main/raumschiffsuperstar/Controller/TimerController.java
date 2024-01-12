@@ -55,6 +55,7 @@ class TimerController {
 
         aController.setTime(aController.getTime() + 1);
 
+        aController.update();
     }
 
     //* Start / Stop Timer
@@ -75,13 +76,7 @@ class TimerController {
 
     //* Timer 1 Sec
     private void timerGameTick() {    
-        //! Warum wird der Stop Screen ausgelöst wenn der nächste Rang erreicht ist    
-        if ((aTime % 5) == 0){ 
-            aRank++;
-            //! hat was mit MoveTimer zu Tun
-            aMoveTimer.setDelay(aMoveTimer.getDelay() / 2);
-        }
-        aTime++;
+        
         checkCollision();
         for (UFO aSuperstar : aSuperstarList) {
             aSuperstar.move(aRaumschiff.getPosObjekt());

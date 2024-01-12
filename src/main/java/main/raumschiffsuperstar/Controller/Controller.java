@@ -148,7 +148,6 @@ public class Controller {
     }
 
     private void removeUFO(boolean aIsSuperstar, int aIndex) {
-        
         if (aIsSuperstar) {
             aRaumschiff.addPoints();
             aSuperstarList.remove(aIndex);

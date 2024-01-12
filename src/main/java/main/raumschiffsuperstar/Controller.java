@@ -1,7 +1,6 @@
 package main.raumschiffsuperstar;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -134,7 +133,7 @@ public class Controller {
         aGameField.addKeyListener(aKeyGameControll);
 
         for (int i = 0; i < 10; i++) {
-            aSuperstarList.add( new Superstar());
+            aSuperstarList.add( new Superstar(aGameField));
         }
     }
 
@@ -159,34 +158,29 @@ public class Controller {
     }
 
     private void checkCollision(){
-        for (UFO aSuperstar : aSuperstarList) {
-            Point aCords = new Point(aSuperstar.getPosObjekt());
-            if (hit(aCords)) {
-                aRaumschiff.addPoints();
-                aSuperstar = new Superstar();
-                aGameGui.repaint();
-                System.out.println(aSuperstar);
+        for (int i = 0; i < aSuperstarList.size(); i++) {
+            if (aSuperstarList.get(i).hit(aRaumschiff)) {
+                removeUFO(true, i);
+                break;
             }
+        }
+        
+        aGameGui.repaint();
+    }
+
+    private void removeUFO(boolean aIsSuperstar, int aIndex) {
+        aRaumschiff.addPoints();
+        if (aIsSuperstar) {
+           
+            aSuperstarList.remove(aIndex);
+            aSuperstarList.add(aIndex, new Superstar(aGameField));
+        } else {
+            aSuperstarList.remove(aIndex);
+            aKryptonitList.add(aIndex, new Kryptonit(aGameField));
         }
     }
 
-    private boolean hit(Point aCords) {
-        if (aCords == null) return false;
-      
-        Point aTempCords = new Point(aCords);
-        Point aTempRaumCords = new Point(aRaumschiff.getPosObjekt());
-      
-        if (aTempCords.x < aTempRaumCords.x + Flugobjekt.SIZE.width &&
-            aTempCords.x + Flugobjekt.SIZE.width > aTempRaumCords.x) {
-      
-          if (aTempCords.y < aTempRaumCords.y + Flugobjekt.SIZE.height &&
-              aTempCords.y + Flugobjekt.SIZE.height > aTempRaumCords.y) {
-            return true;
-          }
-        }
-      
-        return false;
-      }
+    
 
     //* Getter
     public boolean getIsGameRunning() {return aIsGameRunning;}

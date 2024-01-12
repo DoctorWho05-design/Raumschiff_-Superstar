@@ -7,18 +7,12 @@ import main.raumschiffsuperstar.GameField;
 
 public class Superstar extends UFO{
 
-    public Superstar() {
-        super("./public/Superstar.png");
-        this.aPosObjekt = null;
-        //System.out.println(aPosObjekt);
+    public Superstar(GameField aGameField) {
+        super("./public/Superstar.png", aGameField);
     }
 
     @Override
     public void draw(Graphics g, GameField aGameField) {
-        if (this.aPosObjekt == null) {
-            this.aPosObjekt = new Point(random.nextInt(aGameField.getWidth()), random.nextInt(aGameField.getHeight()));
-            System.out.println(aPosObjekt);
-        }
         g.drawImage(aStartFieldImage, this.aPosObjekt.x, aPosObjekt.y, SIZE.width, SIZE.height, aGameField);
     }
 

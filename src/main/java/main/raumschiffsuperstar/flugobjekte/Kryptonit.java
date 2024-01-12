@@ -7,8 +7,8 @@ import main.raumschiffsuperstar.GameField;
 
 public class Kryptonit extends UFO{
 
-    public Kryptonit() {
-        super("./public/Kryptonit.png");
+    public Kryptonit(GameField aGameField) {
+        super("./public/Kryptonit.png", aGameField);
     }
     
     @Override

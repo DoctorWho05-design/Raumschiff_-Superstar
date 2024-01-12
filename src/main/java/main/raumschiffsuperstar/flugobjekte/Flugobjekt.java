@@ -16,7 +16,6 @@ public abstract class Flugobjekt {
     protected int aSpeed;
     protected Random random = new Random();
     public static final Dimension SIZE = new Dimension(50,50);
-    protected boolean init = false;
 
     //* Constructor
     public Flugobjekt(String aCharProfileImageSource) {

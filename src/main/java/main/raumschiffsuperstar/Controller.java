@@ -53,6 +53,9 @@ public class Controller {
         if ((aTime % 30) == 0) aRank++;
         aTime++;
         checkCollision();
+        for (UFO aSuperstar : aSuperstarList) {
+            aSuperstar.move(aRaumschiff.getPosObjekt());
+        }
         aGameGui.updateLabel(aRaumschiff.getPoints(), aTime, aRaumschiff.getLifes(), aRank);
         aGameGui.getGameField().repaint();
     }

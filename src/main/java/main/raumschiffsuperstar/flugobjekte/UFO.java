@@ -36,7 +36,7 @@ public abstract class UFO extends Flugobjekt{
 
     //*  Generate Coordinates
     public void generatedCords() {
-        aPosObjekt = new Point(random.nextInt(aGameField.getWidth()), random.nextInt(aGameField.getHeight()));
+        aPosObjekt = new Point(random.nextInt(aGameField.getWidth()), -40);
     }
 
     //* Getter
@@ -44,4 +44,6 @@ public abstract class UFO extends Flugobjekt{
 
     //* Setter
     public void setInGame(boolean aInGame) {this.aInGame = aInGame;}
+
+    public abstract void updateRank();
 }

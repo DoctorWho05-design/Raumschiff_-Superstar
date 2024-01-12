@@ -13,7 +13,7 @@ public class Raumschiff extends Flugobjekt{
     //* Constructor
     public Raumschiff() {
         super("./public/Raumschiff.png");
-        aSpeed = 5;
+        
     }
 
     //* Method Used for Draw Spaceship on Panel

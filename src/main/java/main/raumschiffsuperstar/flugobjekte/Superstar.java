@@ -9,6 +9,7 @@ public class Superstar extends UFO{
 
     public Superstar(GameField aGameField) {
         super("./public/Superstar.png", aGameField);
+        aSpeed = random.nextInt(10);
     }
 
     @Override
@@ -18,7 +19,8 @@ public class Superstar extends UFO{
 
     @Override
     public void move(Point aPosEnemy) {
-        // TODO Auto-generated method stub
+        aPosObjekt.y += aSpeed;
+        System.out.println(aPosObjekt);
     }
     
 }

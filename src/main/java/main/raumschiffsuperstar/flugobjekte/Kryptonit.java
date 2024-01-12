@@ -21,4 +21,8 @@ public class Kryptonit extends UFO{
         // TODO Auto-generated method stub
     }
     
+    @Override
+    public void updateRank(){
+        
+    }
 }

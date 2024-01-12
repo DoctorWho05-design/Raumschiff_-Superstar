@@ -34,6 +34,7 @@ public class GUI extends JPanel {
             aLiveLabel.setText("Lives: " + aLife);
             aRankLabel.setText("Rank: " + aRank);
         } else {
+            aStartButton.setText("START");
             aPointLabel.setText("Points: ");
             aTimeLabel.setText("Time: ");
             aLiveLabel.setText("Lives: ");

@@ -22,7 +22,6 @@ public abstract class Flugobjekt {
         ImageIcon aTempIcon = new ImageIcon(aCharProfileImageSource);
         Image aTempImage = aTempIcon.getImage();
         aStartFieldImage = aTempImage.getScaledInstance(aSizeObj, aSizeObj, Image.SCALE_SMOOTH);
-        aSpeed = 5;
     }
     
     //* Abstract Methods 

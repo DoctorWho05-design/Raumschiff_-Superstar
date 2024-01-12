@@ -2,6 +2,9 @@ package main.raumschiffsuperstar;
 
 import java.awt.Color;
 import javax.swing.JPanel;
+
+import main.raumschiffsuperstar.Controller.Controller;
+
 import java.awt.event.ActionEvent;
 
 public class GUI extends JPanel {

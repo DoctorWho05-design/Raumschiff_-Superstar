@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
+import main.raumschiffsuperstar.Controller.Controller;
+
 public class GameField extends JPanel {
 
     //* Parameter

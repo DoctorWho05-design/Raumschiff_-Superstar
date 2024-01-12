@@ -13,7 +13,7 @@ public class Raumschiff extends Flugobjekt{
     //* Constructor
     public Raumschiff() {
         super("./public/Raumschiff.png");
-        
+        aSpeed = 15;
     }
 
     //* Method Used for Draw Spaceship on Panel
@@ -31,5 +31,12 @@ public class Raumschiff extends Flugobjekt{
     public int getPoints() {return aPoints;}
     public int getLifes() {return aLifes;}
 
+    //* Adder
     public void addPoints() {aPoints += 10;}
+
+    //* Remover
+    public void removeLife() {aLifes -= 1;}
+
+    //* Setter
+    public void setPos(Point aPosObjekt) {this.aPosObjekt = aPosObjekt;}
 }

@@ -23,4 +23,8 @@ public class Superstar extends UFO{
         System.out.println(aPosObjekt);
     }
     
+    @Override
+    public void updateRank(){
+        aSpeed *= 2;
+    }
 }

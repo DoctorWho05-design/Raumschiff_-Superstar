@@ -19,6 +19,7 @@ public class Controller {
     //* Parameter
     private GUI aGameGui;
     private Timer aGameTimer;
+    private Timer aMoveTimer;
     private boolean aIsGameRunning = false;
     private final Debbug aDebbuger = new Debbug(false);
     private int aTime = 0;
@@ -42,15 +43,22 @@ public class Controller {
         aGameTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                timerTick();
+                timerGameTick();
             }
         });
-
         aGameTimer.stop();
+
+        aMoveTimer = new Timer(1000, null);
+        aMoveTimer.stop();
     }
 
-    private void timerTick() {        
-        if ((aTime % 30) == 0) aRank++;
+    private void timerGameTick() {        
+        if ((aTime % 30) == 0){ 
+            aRank++;
+            for (UFO aSuperstar : aSuperstarList) {
+                aSuperstar.updateRank();
+            }
+        }
         aTime++;
         checkCollision();
         for (UFO aSuperstar : aSuperstarList) {

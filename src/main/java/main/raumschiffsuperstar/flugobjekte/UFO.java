@@ -24,8 +24,6 @@ public abstract class UFO extends Flugobjekt{
     public boolean hit(Raumschiff aRaumschiff) {  
         Point aTempCords = new Point(aPosObjekt);
         Point aTempRaumCords = new Point(aRaumschiff.getPosObjekt());
-
-        if (aTempCords.y > aGameField.getHeight()) return true;
       
         if (aTempCords.x < aTempRaumCords.x + Flugobjekt.SIZE.width &&
             aTempCords.x + Flugobjekt.SIZE.width > aTempRaumCords.x) {

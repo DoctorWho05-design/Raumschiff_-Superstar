@@ -63,15 +63,15 @@ public class Controller {
         if ((aTime % 5) == 0){ 
             aRank++;
             //! hat was mit MoveTimer zu Tun
-            aMoveTimer.setDelay(aMoveTimer.getDelay() / 2);
+            if (!(aMoveTimer.getDelay() == 20)) aMoveTimer.setDelay(aMoveTimer.getDelay()-20);
         }
         aTime++;
         checkCollision();
         for (UFO aSuperstar : aSuperstarList) {
-            aSuperstar.move(aRaumschiff.getPosObjekt());
+            aSuperstar.move(null);
         }
         for (UFO aKryptonit : aKryptonitList) {
-            aKryptonit.move(aRaumschiff.getPosObjekt());
+            aKryptonit.move(null);
         }
         aGameGui.updateLabel(aRaumschiff.getPoints(), aTime, aRaumschiff.getLifes(), aRank);
         aGameGui.getGameField().repaint();
@@ -79,14 +79,14 @@ public class Controller {
 
     private void timerMoveTick() {
         for (UFO aSuperstar : aSuperstarList) {
-            aSuperstar.move(aRaumschiff.getPosObjekt());
+            aSuperstar.move(null);
         }
         for (UFO aKryptonit : aKryptonitList) {
-            aKryptonit.move(aRaumschiff.getPosObjekt());
+            aKryptonit.move(null);
         }
         checkCollision();
         //! Die Life werden ins negative gezogen
-        //if (aRaumschiff.getLifes() <= 0) stopGame();
+        if (aRaumschiff.getLifes() <= 0) stopGame();
         aGameField.repaint();
     }
 
@@ -167,9 +167,6 @@ public class Controller {
         g.drawImage(aStartFieldImage, 250, 100, aGameField);
     }
 
-    
-
-
     //* Button Handler
     public void startGame() {
         aSpeedUFOs = 100;
@@ -205,29 +202,48 @@ public class Controller {
 
     public void startSettings() {
         System.out.println("Settings started!");
-        // TODO code Settings
+        
         
     }
 
     public void startHelp() {
         System.out.println("Help Menu strted!");
-        // TODO code Help Frame
+        
     }
 
     //! Check Collision wird ab dem Nächsten Rang ausgelöst
     private void checkCollision(){
+        System.out.println("Check Collsion");
+        //! Hier fehler
         for (int i = 0; i < aSuperstarList.size(); i++) {
+            System.out.println("Check Superstar " + i);
+            
+            if (aSuperstarList.get(i).getPosObjekt().y > aGameField.getHeight()) {
+                removeUFO(true, i);
+                return;
+            }
+
             if (aSuperstarList.get(i).hit(aRaumschiff)) {
+                System.out.println("Remove Supersar");
                 removeUFO(true, i);
                 aGameGui.repaint();
+                aRaumschiff.addPoints();
                 return;
             }
         }
 
         for (int i = 0; i < aKryptonitList.size(); i++) {
+            if (aKryptonitList.get(i).getPosObjekt().y > aGameField.getHeight()) {
+                removeUFO(false, i);
+                return;
+            }
+
+            System.out.println("Check Kryptonit " + i);
             if (aKryptonitList.get(i).hit(aRaumschiff)) {
+                System.out.println("Remove Kryptonit");
                 removeUFO(false, i);
                 aGameGui.repaint();
+                aRaumschiff.removeLife();
                 return;
             }
         }
@@ -236,13 +252,10 @@ public class Controller {
     }
 
     private void removeUFO(boolean aIsSuperstar, int aIndex) {
-        
         if (aIsSuperstar) {
-            aRaumschiff.addPoints();
             aSuperstarList.remove(aIndex);
             aSuperstarList.add(aIndex, new Superstar(aGameField));
         } else {
-            aRaumschiff.removeLife();
             aKryptonitList.remove(aIndex);
             aKryptonitList.add(aIndex, new Kryptonit(aGameField));
         }

@@ -88,6 +88,8 @@ public class Controller {
         //! Die Life werden ins negative gezogen
         if (aRaumschiff.getLifes() <= 0) stopGame();
         aGameField.repaint();
+
+        if (aRank == 10) aMoveTimer.setDelay(10);
     }
 
     //* KeyListener

@@ -16,7 +16,7 @@ public abstract class UFO extends Flugobjekt{
     public UFO(String aCharProfileImageSource, GameField aGameField) {
         super(aCharProfileImageSource);
         this.aGameField = aGameField;
-        aSpeed = random.nextInt(5) + 1;
+        aSpeed = random.nextInt(15) + 1;
         generatedCords();
     }
     

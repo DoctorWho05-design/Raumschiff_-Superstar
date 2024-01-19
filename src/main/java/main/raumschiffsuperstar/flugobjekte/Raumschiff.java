@@ -13,14 +13,14 @@ public class Raumschiff extends Flugobjekt{
     //* Constructor
     public Raumschiff() {
         super("./public/Raumschiff.png");
-        aSpeed = 5;
+        aSpeed = 15;
     }
 
     //* Method Used for Draw Spaceship on Panel
     @Override
     public void draw(Graphics g, GameField aGameField) {
         if (this.aPosObjekt == null) this.aPosObjekt = new Point(20, (aGameField.getHeight()/2) - (this.aSizeObj/2));
-        g.drawImage(aStartFieldImage, aPosObjekt.x, aPosObjekt.y, aSize.width + 20, aSize.height + 20, aGameField);
+        g.drawImage(aStartFieldImage, aPosObjekt.x, aPosObjekt.y, SIZE.width + 20, SIZE.height + 20, aGameField);
     }
 
     //! Wird nicht benötigt
@@ -30,4 +30,13 @@ public class Raumschiff extends Flugobjekt{
     //* Getter
     public int getPoints() {return aPoints;}
     public int getLifes() {return aLifes;}
+
+    //* Adder
+    public void addPoints() {aPoints += 10;}
+
+    //* Remover
+    public void removeLife() {aLifes -= 1;}
+
+    //* Setter
+    public void setPos(Point aPosObjekt) {this.aPosObjekt = aPosObjekt;}
 }

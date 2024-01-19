@@ -22,7 +22,7 @@ public class RaumschiffSuperstar extends JFrame{
         this.setTitle(aTitle);
         this.setIconImage(aGameIcon.getImage());
         this.setSize(aGameDim);
-        this.setResizable(false);
+        this.setResizable(true);
         this.add(aGameGui);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);

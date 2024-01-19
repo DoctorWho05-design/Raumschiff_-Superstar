@@ -1,6 +1,5 @@
 package main.raumschiffsuperstar.flugobjekte;
 
-
 import main.raumschiffsuperstar.GameField;
 
 public class Superstar extends UFO{

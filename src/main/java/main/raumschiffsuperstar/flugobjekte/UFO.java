@@ -2,9 +2,7 @@ package main.raumschiffsuperstar.flugobjekte;
 
 import java.awt.Graphics;
 import java.awt.Point;
-
 import main.raumschiffsuperstar.GameField;
-
 
 public abstract class UFO extends Flugobjekt{
 

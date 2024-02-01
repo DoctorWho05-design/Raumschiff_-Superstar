@@ -59,10 +59,8 @@ public class Controller {
     }
 
     private void timerGameTick() {    
-        //! Warum wird der Stop Screen ausgelöst wenn der nächste Rang erreicht ist    
         if ((aTime % 5) == 0){ 
             aRank++;
-            //! hat was mit MoveTimer zu Tun
             if (!(aMoveTimer.getDelay() == 20)) aMoveTimer.setDelay(aMoveTimer.getDelay()-20);
         }
         aTime++;
